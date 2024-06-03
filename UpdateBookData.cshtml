@@ -1,0 +1,141 @@
+@{
+    ViewBag.Title = "Update Book Data";
+    Layout = null;
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .custom-btn {
+            background-color: #B85042;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            width: 40%;
+        }
+
+            .custom-btn:hover {
+                background-color: #BF7860;
+            }
+    </style>
+</head>
+<body>
+    <div class="header bg-dark text-white" style="width: 300%; padding: 15px;">
+        <span style="font-size: 20px;">PollenPage</span>
+    </div>
+    <div class="container mt-5">
+        <h1>Update Book Information</h1>
+        <form method="post" action="/AddBookPage/UpdateBookData">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="Title" placeholder="Enter book title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" name="Author" placeholder="Enter book author" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" class="form-control" id="genre" name="Genre" placeholder="Enter book genre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="Description" rows="3" placeholder="Enter book description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="coverImageUrl">Cover Image URL</label>
+                <input type="text" class="form-control" id="coverImageUrl" name="CoverImageUrl" placeholder="Enter cover image URL" required>
+            </div>
+
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text" class="form-control" id="isbn" name="ISBN" placeholder="Enter book ISBN" required>
+            </div>
+
+            <div class="form-group">
+                <label for="publisher">Publisher</label>
+                <input type="text" class="form-control" id="publisher" name="Publisher" placeholder="Enter book publisher" required>
+            </div>
+
+            <div class="form-group">
+                <label for="language">Language</label>
+                <input type="text" class="form-control" id="language" name="Language" placeholder="Enter book language" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bookExcerpts">Book Excerpts</label>
+                <textarea class="form-control" id="bookExcerpts" name="BookExcerpts" rows="3" placeholder="Enter book excerpts" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="aboutAuthor">About The Author</label>
+                <textarea class="form-control" id="aboutAuthor" name="AboutAuthor" rows="3" placeholder="Enter about the author" required></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn custom-btn">UPDATE</button>
+            </div>
+
+            <div id="feedback-section" class="text-center mt-3" style="display: none;"></div>
+
+            <script>// JavaScript code to display feedback message
+                const feedbackSection = document.getElementById('feedback-section');
+                const urlParams = new URLSearchParams(window.location.search);
+                const success = urlParams.get('success');
+
+                if (success === 'true') {
+                    feedbackSection.innerHTML = '<p class="text-success">Book updated successfully!</p>';
+                } else if (success === 'false') {
+                    feedbackSection.innerHTML = '<p class="text-danger">Error occurred while updating the book. Please try again later.</p>';
+                }
+
+                if (success) {
+                    feedbackSection.style.display = 'block';
+                }</script>
+
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

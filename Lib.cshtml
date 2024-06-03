@@ -1,0 +1,278 @@
+@{
+    Layout = null;
+    var colorPreference = ViewData["ColorPreference"]?.ToString() ?? "Light";
+
+}
+<partial name="_BookOfTheYearModal.cshtml" />
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    @*<style>
+        /* Add custom styles here */
+    </style>*@
+</head>
+<style>
+    .custom-btn {
+        padding: 10px 20px;
+        background-color: #B85042;
+        /* Background color */
+        color: #E7E8D1;
+        /* Text color */
+        text-decoration: none;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        font-size: 20px;
+        transition: background-color 0.3s;
+    }
+
+        .custom-btn:hover {
+            background-color: #D36E5D;
+            /* Hover background color */
+        }
+
+    .home-link,
+    .contact-link {
+        color: #6D5843;
+        /* Dark wooden brown color */
+    }
+
+    .card-img-top {
+        width: 100%;
+        /* Ensures the image fills the card width */
+        height: 200px;
+        /* Sets a consistent height for all images */
+        object-fit: cover;
+        /* Ensures the image covers the space without distorting */
+    }
+
+    .card-body {
+        text-align: center;
+        /* Centers the text in each card */
+    }
+
+    body.light-mode {
+        background-color: white;
+        color: black;
+    }
+
+    body.dark-mode {
+        background-color: black;
+        color: white;
+    }
+</style>
+
+<body class="@colorPreference.ToLower()-mode">
+    <!-- Navigation Bar -->
+    <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">PollenPage</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>-->
+    <!--the image carouse-->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/22.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        </button>
+    </div>
+
+    <!-- Library Header -->
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to Digital PollenPage Library</h1>
+        <p class="lead">Explore our vast collection of digital books</p>
+    </div>
+
+    <!--Categories-->
+    <div class="container mb-5">
+        <h2 style="font-weight: bold; font-size: 24px;">Categories</h2>
+        <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="~/images/mystery.jpeg" class="card-img-top" alt="Mystery">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: bold; font-size: 18px;">Mystery</h5>
+                                    <p class="card-text">Embrace the enigma, inviting exploration at every twist.</p>
+                                    <a asp-area="" asp-controller="Library" asp-action="Categories" class="btn custom-btn">View Books</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="~/images/thriller.jpeg" class="card-img-top" alt="Thriller">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: bold; font-size: 18px;">Thriller</h5>
+                                    <p class="card-text">
+                                        Dive into suspense, pulse quickening with each turn of the
+                                        page.
+                                    </p>
+                                    <a asp-area="" asp-controller="Library" asp-action="Categories" class="btn custom-btn">View Books</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="~/images/adventure.jpeg" class="card-img-top" alt="Adventure">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: bold; font-size: 18px;">Adventure</h5>
+                                    <p class="card-text">Unleash the thrill of the unknown.</p>
+                                    <a asp-area="" asp-controller="Library" asp-action="Categories" class="btn custom-btn">View Books</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more carousel items with additional categories and images as needed -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="~/images/philosophy.jpeg" class="card-img-top" alt="Philosophy">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: bold; font-size: 18px;">Philosophy</h5>
+                                    <p class="card-text">Dive deep into thought's endless ocean.</p>
+                                    <a asp-area="" asp-controller="Library" asp-action="Categories" class="btn custom-btn">View Books</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="~/images/fiction.jpeg" class="card-img-top" alt="Sci-Fi">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: bold; font-size: 18px;">Sci-Fi</h5>
+                                    <p class="card-text">Embark on futuristic adventures beyond imagination.</p>
+                                    <a asp-area="" asp-controller="Library" asp-action="Categories" class="btn custom-btn">View Books</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="~/images/history.jpeg" class="card-img-top" alt="History">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-weight: bold; font-size: 18px;">History</h5>
+                                    <p class="card-text">
+                                        Explore the echoes of the past, where every moment holds a
+                                        tale.
+                                    </p>
+                                    <a asp-area="" asp-controller="Library" asp-action="Categories" class="btn custom-btn">View Books</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!--end of categories-->
+    <!--footer-->
+    @*<footer class="footer mt-auto py-3 bg-light border-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-md-start text-center">
+                        <span class="text-dark fw-bold me-3 home-link" style="font-size: 18px;margin-right: 100px;">
+                            <a href="userprofilepage.html" class="text-decoration-none" style="font-size: 18px;">Profile</a>
+                        </span>
+                        <span class="text-dark fw-bold me-3 contact-link" style="font-size: 18px; margin-left: 50px;">
+                            <a href="setting.html" class="text-decoration-none" style="font-size: 18px;">Settings</a>
+                        </span>
+                    </div>
+                    <div class="col-md-6 text-md-end text-center">
+                        <span class="text-muted">© 2023 Digital Bookshelf. All rights reserved.</span>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-md-start text-center">
+                    <span class="text-dark fw-bold home-link" style="font-size: 18px; margin-right: 50px;">
+                        <a asp-area="" asp-controller="Bookshelf" asp-action="Bookshelves" class="text-decoration-none" style="font-size: 18px;">Profile</a>
+                    </span>
+                    <span class="text-dark fw-bold contact-link" style="font-size: 18px; margin-left: 50px;">
+                        <a asp-area="" asp-controller="Authentication" asp-action="Settings" class="text-decoration-none" style="font-size: 18px;">Settings</a>
+                    </span>
+                </div>
+                <div class="col-md-6 text-md-end text-center">
+                    <div class="d-flex justify-content-center justify-content-md-end align-items-center">
+                        <span class="text-muted me-3">© 2023 Digital Bookshelf. All rights reserved.</span>
+                        <form asp-action="SetColorPreference" method="post" class="d-inline-block pl-4 mb-0">
+                            <div class="form-group mb-0">
+                                <select name="colorPreference" id="colorPreferenceSelect" class="form-control d-inline-block me-2" onchange="this.form.submit()">
+                                    <option value="Light">Light Mode</option>
+                                    <option value="Dark">Dark Mode</option>
+                                </select>
+                            </div>
+                        </form>
+                        <button class="navbar-toggler d-inline-block ms-3" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your Script -->
+    <script>
+// Initialize the carousel with your options
+        var myCarousel = new bootstrap.Carousel(document.getElementById('categoryCarousel'), {
+            interval: 5000,
+            wrap: true,
+            keyboard: false
+        });
+         document.addEventListener('DOMContentLoaded', function() {
+            var colorPreference = '@colorPreference';
+            var selectElement = document.getElementById('colorPreferenceSelect');
+            selectElement.value = colorPreference;
+
+            // Ensure the body class is applied correctly
+            document.body.classList.add(colorPreference.toLowerCase() + '-mode');
+        });
+    </script>
+
+
+
+</body>
+
+</html>

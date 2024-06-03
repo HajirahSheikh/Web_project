@@ -1,0 +1,62 @@
+@model myproject.Models.ModelView
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Categories</title>
+    <style>
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .books {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .book {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+            .book img {
+                max-width: 100%;
+                height: auto;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        @foreach (var category in Model.GenreCategories)
+        {
+            <div class="category">
+                <h2>@category.Genre</h2>
+                <p>@category.Description</p>
+                <div class="books">
+                    @foreach (var book in category.Books)
+                    {
+                        <div class="book">
+                            <h3>@book.Title</h3>
+                            <p><strong>Author:</strong> @book.Author</p>
+                            <p><strong>Description:</strong> @book.Description</p>
+                            <img src="@book.CoverImageUrl" alt="Cover Image">
+                            <p><strong>ISBN:</strong> @book.ISBN</p>
+                            <p><strong>Publisher:</strong> @book.Publisher</p>
+                            <p><strong>Language:</strong> @book.Language</p>
+                            <p><strong>Excerpts:</strong> @book.BookExcerpts</p>
+                            <p><strong>About the Author:</strong> @book.AboutAuthor</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+

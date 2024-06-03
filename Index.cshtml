@@ -1,0 +1,47 @@
+﻿@*@{
+        ViewData["Title"] = "Home Page";
+        var bookOfTheYear = "Harry Potter";  // Or get it from ViewBag or ViewData if dynamically set
+    }
+    <partial name="_BookOfTheYearModal.cshtml" />*@
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .custom-btn {
+            background-color: #B85042;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            width: 15%;
+        }
+
+            .custom-btn:hover {
+                background-color: #BF7860;
+            }
+    </style>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>Welcome</h1>
+        <p>Please choose an option below:</p>
+        <div class="mt-4">
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn custom-btn">Login</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn custom-btn">Register</a>
+            <a asp-area="Identity" asp-page="/Account/Logout" class="btn custom-btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

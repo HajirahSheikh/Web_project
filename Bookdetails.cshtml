@@ -1,0 +1,358 @@
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .btn-custom {
+            padding: 10px 30px;
+            background-color: #B85042;
+            /* Text color */
+            color: #E7E8D1;
+            /* Background color */
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            /* Increased font size */
+            transition: background-color 0.3s;
+        }
+
+            .btn-custom:hover {
+                background-color: #D36E5D;
+                /* Nuance color */
+            }
+
+        /* Adjustments for Book Cover */
+        .book-cover {
+            max-width: 325px;
+            margin-bottom: 20px;
+        }
+
+        /* Adjustments for Related Books Section */
+        .related-books {
+            margin-top: 50px;
+        }
+
+        /* Header and Footer Styles */
+        .header {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: left;
+        }
+
+        .book-clubs p {
+            margin-bottom: 100px;
+            /* Adjust the value as needed */
+        }
+
+
+        .card-height .card-img-top {
+            height: 200px;
+            /* Set a fixed height for the images */
+            object-fit: cover;
+            /* Ensure the images maintain aspect ratio and cover the entire area */
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .rounded-oval {
+            border-radius: 20px;
+            /* Adjust the border radius for oval shape */
+            border: 2px solid #343a40;
+            /* Add border to make it more prominent */
+        }
+
+        .list-group-item {
+            border-top-left-radius: 20px;
+            /* Adjust the border radius for top-left */
+            border-top-right-radius: 20px;
+            /* Adjust the border radius for top-right */
+            border-bottom-left-radius: 20px;
+            /* Adjust the border radius for bottom-left */
+            border-bottom-right-radius: 20px;
+            /* Adjust the border radius for bottom-right */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <span>PollenPage</span>
+        <div class="d-flex align-items-center">
+            <div class="input-group mr-5">
+                <input type="text" class="form-control" placeholder="Search Books" aria-label="Search Books"
+                       aria-describedby="search-books">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="search-books">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
+            <a asp-area="" asp-controller="Bookshelf" asp-action="Bookshelves" class="mr-5 text-white">Profile</a>
+            <a asp-area="" asp-controller="Authentication" asp-action="Settings" class="mr-4 text-white">Settings</a>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Book Cover Image -->
+                <img src="~/images/alittle.jpeg" alt="Book Cover" class="img-fluid mb-3 book-cover">
+                <!-- Title, Author, Genre -->
+                <h2 class="mb-3">A Little Life</h2>
+                <p class="text-muted mb-2">Hanya Yanagihara | Mental Health, Fiction, Contemporary</p>
+                <!-- Book Excerpts -->
+                <h4 class="mb-3">Book Excerpts</h4>
+                <p>
+                    "He had the gift of holding on to beauty, in his eye, in his heart, even as he tried to deny its presence,
+                    its persistent existence."
+                </p>
+                <p>
+                    "You won't understand what I mean now, but someday you will: the only trick of friendship, I think, is to
+                    find people who are better than you are—not smarter, not cooler, but kinder, and more generous, and more
+                    forgiving—and then to appreciate them for what they can teach you, and to try to listen to them when they tell
+                    you something about yourself, no matter how bad—or good—it might be, and to trust them, which is the hardest
+                    thing of all."
+                </p>
+                <p>"And so we beat on, boats against the current, borne back ceaselessly into the past." </p>
+
+                <!-- Purchase Options -->
+                <div class="mb-3">
+                    <div class="btn-group">
+                        <!-- Button part displaying the selected option -->
+                        <button class="btn btn-custom w-55" type="button" id="selectedOptionButton">
+                            Choose an option
+                        </button>
+                        <!-- Button part triggering the popup modal -->
+                        <button class="btn btn-custom dropdown-toggle" type="button" data-toggle="modal" data-target="#popup">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <!-- Popup modal -->
+                        <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popupLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 350px;">
+                                <!-- Center the modal vertically and set max width -->
+                                <div class="modal-content rounded-oval">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="popupLabel">Choose a Shelf:</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="list-group text-center">
+                                            <!-- Center the options -->
+                                            <button type="button"
+                                                    class="list-group-item list-group-item-action rounded-oval my-2 font-weight-bold">
+                                                Want to read
+                                            </button>
+                                            <button type="button"
+                                                    class="list-group-item list-group-item-action rounded-oval my-2 font-weight-bold">
+                                                Currently Reading
+                                            </button>
+                                            <button type="button"
+                                                    class="list-group-item list-group-item-action rounded-oval my-2 font-weight-bold">
+                                                Read
+                                            </button>
+                                            <button type="button"
+                                                    class="list-group-item list-group-item-action rounded-oval my-2 font-weight-bold">
+                                                Pin It
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Popup -->
+                <div class="overlay"></div>
+                <div class="popup" id="popup">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5>Choose Option:</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">want-to-read</li>
+                        <li class="list-group-item">read</li>
+                        <li class="list-group-item">currently reading</li>
+                        <li class="list-group-item">pin</li>
+                    </ul>
+                </div>
+                <!-- Author Bio -->
+                <h4 class="mb-3">About The Author</h4>
+                <p>
+                    Hanya Yanagihara, an accomplished American novelist and editor, was born in Los Angeles, California, and
+                    raised in Hawaii before embarking on her literary journey in New York City. Graduating from Smith College and
+                    later earning a Master of Arts in English from the University of Iowa Writers' Workshop, Yanagihara initially
+                    worked in journalism before gaining recognition with her debut novel, "The People in the Trees."<br> However,
+                    it was her second novel, "A Little Life," published in 2015, that propelled her to literary stardom. Praised
+                    for its emotional depth and vivid characterization, the novel delves into themes of trauma, friendship, and
+                    the complexities of human relationships. Yanagihara's writing style is noted for its raw honesty and profound
+                    insights into the human condition, earning her widespread acclaim and admiration in the literary world.
+                </p>
+            </div>
+            <div class="col-md-4 related-books">
+                <!-- Move the Related Books section here -->
+                <div class="mt-4 ml-4">
+                    <!-- Add ml-4 class for left margin -->
+                    <h4 class="mb-3">Readers also enjoyed</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card card-height">
+                                <img src="~/images/secrethistory.jpeg" class="card-img-top" alt="Related Book 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">The Secret History</h5>
+                                    <p class="card-text">Donna Tartt</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card card-height">
+                                <img src="~/images/normalpeople.jpeg" class="card-img-top" alt="Related Book 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Normal People</h5>
+                                    <p class="card-text">Sally Rooney</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card card-height">
+                                <img src="~/images/yellowface.jpeg" class="card-img-top" alt="Related Book 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Yellowface</h5>
+                                    <p class="card-text">R.F. Kuang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card card-height">
+                                <img src="~/images/goldfinch.jpeg" class="card-img-top" alt="Related Book 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">The Goldfinch</h5>
+                                    <p class="card-text">Donna Tartt</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-5">
+                    <h4 class="mb-3 ml-5">Share on Social Media</h4>
+                    <a href="#" class="btn btn-outline-primary mr-2" style="margin-left: 25px;">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </a>
+                    <a href="#" class="btn btn-outline-info mr-2"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="#" class="btn btn-outline-danger"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- Reader Comments -->
+        <div class="mt-5">
+            <h4 class="mb-4">Reader Comments</h4>
+            <!-- Add comment form here -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Nighat Ilyas</h5>
+                    <p class="card-text">
+                        "I devoured every page of 'A Little Life' with bated breath. Yanagihara's storytelling is
+                        masterful, drawing you into the lives of the characters with such depth and intensity. This book is a
+                        testament to the power of empathy and the resilience of the human spirit."
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Habibah Sheikh</h5>
+                    <p class="card-text">
+                        A profound and moving novel that will leave you speechless. Yanagihara's prose is lyrical
+                        and haunting.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Book Events -->
+        <div class="mt-5">
+            <h4 class="mb-3">Book Events</h4>
+            <p>Join us for an exclusive book signing event with the author!</p>
+            <!-- Display upcoming book events here -->
+        </div>
+        <!-- Book Clubs -->
+        <div class="mt-4">
+            <h4 class="mb-3">Book Clubs</h4>
+            <p class="mb-4">Connect with other readers and join a book club! Email us.</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p class="text-left">Contact us at <a href="mailto:pollenpage@gmail.com">pollenpage@gmail.com</a></p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+
+</html>

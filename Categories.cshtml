@@ -1,0 +1,231 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+    var bookOfTheYear = "Harry Potter";  // Or get it from ViewBag or ViewData if dynamically set
+    var colorPreference = ViewData["ColorPreference"]?.ToString() ?? "Light";
+
+}
+<partial name="_BookOfTheYearModal.cshtml" />
+
+@*@await Html.PartialAsync("~/Views/Shared/_BookOfTheYearModal.cshtml", bookOfTheYear)*@
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+    <title>PollenPage</title>
+
+    <!-- Bootstrap CSS -->
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+
+    <style>
+        /* Profile Picture Styling */
+        .profile-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        /* Custom Styling for the Categories Section */
+        .category-card {
+            margin-bottom: 30px;
+        }
+
+        .category-heading {
+            margin-bottom: 15px;
+        }
+
+        .category-description {
+            margin-bottom: 15px;
+        }
+
+        .book-image {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            margin: 10px;
+        }
+
+        /* Custom styling for category headings */
+        .category-heading {
+            font-weight: bold;
+            /* Bold the text */
+            text-align: center;
+            /* Center-align the text */
+            margin-bottom: 15px;
+            /* Optional: Add some margin below the heading */
+        }
+
+        .category-description {
+            text-align: center; /* Center-align the text */
+            margin-bottom: 15px; /* Optional: Add some margin below the paragraph */
+        }
+    </style>
+</head>
+
+<body class="@($"{colorPreference.ToLower()}-mode")">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Authentication" asp-action="Home">PollenPage</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <img src="~/images/profile.jpg" alt="Profile Picture" class="profile-picture">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--<h1>@Model</h1>-->
+    @*@Html.Partial("_BookOfTheYearModal", bookOfTheYear)     Book Categories Section*@
+
+
+
+    @*-----------------------------
+
+    ive commented this but this somehow miracously worked*@ 
+
+
+    @*<body>
+        <div>
+            @foreach (var category in Model)
+            {
+                <div class="category">
+                    <h2>@category.Genre</h2>
+                    <div class="books">
+                        @foreach (var book in category.Books)
+                        {
+                            <div class="book">
+                                <a href="@Url.Action("BookDetails", "Library", new { genre = book.Genre })">
+                                    <img src="@book.CoverImageUrl" alt="Cover Image">
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </body>*@
+
+    @*-----------------------------*@
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- First Category: Fiction -->
+            <div class="col-md-6 category-card">
+                <h3 class="category-heading">Mystery</h3>
+                <p class="category-description">Intriguing puzzles and unexpected reveals.</p>
+                <div class="d-flex">
+                    <!-- Book Images -->
+                    <a asp-area="" asp-controller="Bookshelf" asp-action="Bookdetails"><img src="~/images/extinction.jpeg" alt="Book 1" class="book-image"></a>
+                    <a asp-area="" asp-controller="Bookshelf" asp-action="Bookdetails"><img src="~/images/floating.jpeg" alt="Book 2" class="book-image"></a>
+                    <a asp-area="" asp-controller="Bookshelf" asp-action="Bookdetails"><img src="~/images/thelast.jpeg" alt="Book 3" class="book-image"></a>
+                </div>
+            </div>
+            <!-- Second Category: Non-Fiction -->
+            <div class="col-md-6 category-card">
+                <h3 class="category-heading">Thriller</h3>
+                <p class="category-description">Fast-paced and gripping storylines.</p>
+                <div class="d-flex">
+            <!-- Book Images -->
+            <img src="~/images/unquiet.jpeg" alt="Book 4" class="book-image">
+                    <img src="~/images/everyone.jpeg" alt="Book 5" class="book-image">
+                    <img src="~/images/good.jpeg" alt="Book 6" class="book-image">
+                </div>
+            </div>
+            <!-- First Category: Fiction -->
+            <div class="col-md-6 category-card">
+                <h3 class="category-heading">Adventure</h3>
+                <p class="category-description">Exciting journeys and discoveries.</p>
+                <div class="d-flex">
+            <!-- Book Images -->
+            <img src="~/images/tress.png" alt="Book 1" class="book-image">
+                    <img src="~/images/sona.jpeg" alt="Book 2" class="book-image">
+                    <img src="~/images/luminous.jpeg" alt="Book 3" class="book-image">
+                </div>
+            </div>
+            <!-- First Category: Fiction -->
+            <div class="col-md-6 category-card">
+                <h3 class="category-heading">Philosophy</h3>
+                <p class="category-description">Profound questions about life and knowledge.</p>
+                <div class="d-flex">
+            <!-- Book Images -->
+            <img src="~/images/thus.webp" alt="Book 1" class="book-image">
+                    <img src="~/images/beyond.jpeg" alt="Book 2" class="book-image">
+                    <img src="~/images/republic.jpeg" alt="Book 3" class="book-image">
+                </div>
+            </div>
+            <!-- First Category: Fiction -->
+            <div class="col-md-6 category-card">
+                <h3 class="category-heading">Sci-Fiction</h3>
+                <p class="category-description">Imagining futuristic worlds and advanced technologies.</p>
+                <div class="d-flex">
+            <!-- Book Images -->
+            <img src="~/images/wheresleeping.jpeg" alt="Book 1" class="book-image">
+                    <img src="~/images/theday.jpeg" alt="Book 2" class="book-image">
+                    <img src="~/images/howtosolve.jpeg" alt="Book 3" class="book-image">
+                </div>
+            </div>
+            <!-- First Category: Fiction -->
+            <div class="col-md-6 category-card">
+                <h3 class="category-heading">History</h3>
+                <p class="category-description">Exploring significant events and people from the past.</p>
+                <div class="d-flex">
+            <!-- Book Images -->
+            <img src="~/images/bombing.jpeg" alt="Book 1" class="book-image">
+                            <img src="~/images/ghost.jpeg" alt="Book 2" class="book-image">
+                            <img src="~/images/riseandfall.jpeg" alt="Book 3" class="book-image">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- Footer -->
+            <footer class="bg-dark text-white py-4 mt-5">
+                <div class="container">
+                    <div class="row">
+                        <!-- Footer Links -->
+                        <div class="col-md-6">
+                            <h5>Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a asp-area="" asp-controller="Authentication" asp-action="Home" class="text-white">Home</a></li>
+                                <li><a asp-area="" asp-controller="Library" asp-action="Lib" class="text-white">Library</a></li>
+                                <li><a asp-area="" asp-controller="Bookshelf" asp-action="Bookshelves" class="text-white"> Profile</a></li>
+                                <li><a asp-area="" asp-controller="Authentication" asp-action="Settings" class="text-white">Settings</a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Information -->
+                        <div class="col-md-6">
+                            <h5>Contact Information</h5>
+                            <p>Address: 123 Pollen Street, City, Country</p>
+                            <p>Phone: +123 456 789</p>
+                            <p>Email: info@pollenpage.com</p>
+                        </div>
+                    </div>
+                    <!-- Copyright -->
+                    <div class="text-center mt-4">
+                        <p>&copy; 2024 PollenPage. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+
+
+            <!-- Bootstrap JS and dependencies -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

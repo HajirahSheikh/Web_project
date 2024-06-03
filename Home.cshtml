@@ -1,0 +1,123 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add custom styles here */
+
+        .btn {
+            padding: 10px 30px;
+            background-color: #B85042; /* Background color */
+            color: #E7E8D1; /* Text color */
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-size: 20px; /* Increased font size */
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #D36E5D; /* Hover background color */
+            }
+
+        .navbar {
+            width: 100%;
+            background-color: #343a40 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-light">
+
+        <div class="container-fluid text-center">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" style="margin-right: 130px;">
+                        <a class="nav-link" asp-area="" asp-controller="Library" asp-action="Lib" style="color: #ffffff;font-size: 20px;">Library</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 130px;">
+                        <a class="nav-link" asp-area="" asp-controller="Bookshelf" asp-action="Bookshelves" style="color: #ffffff;font-size: 20px;">Profile</a>
+                    </li>
+                    <li class="nav-item" style="margin-right: 130px;">
+                        <a class="nav-link" asp-area="" asp-controller="Library" asp-action="Categories" style="color: #ffffff;font-size: 20px;">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Authentication" asp-action="Settings" style="color: #ffffff;font-size: 20px;">Settings</a>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control rounded mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success btn-md my-2 my-sm-0" type="submit" style="padding: 10px 20px; font-size: 16px;">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <section class="vh-100" style="background-color: #e8d8c8;">
+        <div class="container py-5 h-150">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-md-6 col-lg-6 col-xl-7">
+                    <!-- Adjusted column width -->
+                    <img src="~/images/pi.jpeg" alt="login form" class="img-fluid w-140 h-90" />
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-xl-5">
+                    <!-- Adjusted column width -->
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                            <form>
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <i class="fas fa-scroll fa-2x me-2" style="color: #ff6219;"></i> <!-- Adjusted margin-right -->
+                                    <span class="h1 fw-bold mb-0 ml-2">PollenPage</span>
+                                </div>
+
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example17">Email address</label>
+                                    <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                                </div>
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example27">Password</label>
+                                    <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                                </div>
+                                <div class="pt-1 mb-4">
+                                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                                </div>
+                                <a class="small text-muted" href="#!">Forgot password?</a>
+                                <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a asp-area="" asp-controller="Authentication" asp-action="Signup" style="color: #393f81;">Sign Up</a></p>
+                                <a href="#!" class="small text-muted">Terms of use.</a>
+                                <a href="#!" class="small text-muted">Privacy policy</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,447 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .profile-header {
+            background-color: #6D5843;
+            color: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-email {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+        }
+
+        .recommendations {
+            margin-top: 2rem;
+        }
+
+        .card {
+            border: none;
+            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
+            border-radius: 20px;
+            min-height: 450px;
+            box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card-has-bg {
+            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+            background-size: 120%;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .card:hover {
+            transform: scale(0.98);
+            box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
+            background-size: 130%;
+            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .card-img-overlay {
+            transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+            /* Remove the background property */
+            /* background: rgb(255, 186, 33); */
+            /* background: linear-gradient(0deg, rgba(255, 186, 33, 0.3785889355742297) 0%, rgba(255, 186, 33, 1) 100%); */
+        }
+
+
+        .card-footer {
+            background: none;
+            border-top: none;
+        }
+
+        .card-title {
+            font-weight: 800;
+        }
+
+        .card-meta {
+            color: rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .card-body {
+            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .card-img-overlay {
+            transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .wrapper {
+            margin: 10vh;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        /* Styling for the dark section */
+        .dark {
+            background-color: #222;
+            /* Change the background color as needed */
+            color: #fff;
+            /* Change the text color as needed */
+            padding: 50px 0;
+            /* Adjust padding as needed */
+        }
+
+            .dark .container {
+                text-align: center;
+                /* Center the content */
+            }
+
+            .dark .postcard {
+                background-color: #333;
+                /* Change the postcard background color as needed */
+                border-radius: 10px;
+                /* Add border radius as needed */
+                margin-bottom: 20px;
+                /* Adjust margin between postcards as needed */
+                position: relative;
+                /* Position the postcard container */
+                overflow: hidden;
+                /* Hide overflow to prevent text from extending outside the container */
+            }
+
+            .dark .postcard__img {
+                width: 100%;
+                /* Ensure the image spans the entire width of its container */
+                height: 100%;
+                /* Ensure the image spans the entire height of its container */
+                object-fit: cover;
+                /* Maintain the aspect ratio of the image and cover the container */
+                position: absolute;
+                /* Position the image absolutely within its container */
+                top: 0;
+                /* Position the image at the top of its container */
+                left: 0;
+                /* Position the image at the left of its container */
+                z-index: -1;
+                /* Move the image behind the text */
+            }
+
+            .dark .postcard__text {
+                padding: 20px;
+                /* Add padding inside the postcard */
+                position: relative;
+                /* Position the text relative to its container */
+                z-index: 1;
+                /* Ensure the text appears above the image */
+            }
+
+            .dark .postcard__title {
+                margin-bottom: 10px;
+                /* Adjust margin bottom for the title */
+            }
+
+            .dark .postcard__subtitle {
+                margin-bottom: 10px;
+                /* Adjust margin bottom for the subtitle */
+            }
+
+            .dark .postcard__preview-txt {
+                margin-bottom: 10px;
+                /* Adjust margin bottom for the preview text */
+            }
+
+            .dark .postcard__tagbox {
+                list-style-type: none;
+                /* Remove default list styles */
+                padding: 0;
+                /* Remove default padding */
+                margin: 0;
+                /* Remove default margin */
+            }
+
+            .dark .tag__item {
+                display: inline-block;
+                /* Display tags inline */
+                margin-right: 10px;
+                /* Adjust margin between tags */
+            }
+
+        .postcard__tagbox:first-child {
+            margin-bottom: 20px;
+            /* Adjust the margin bottom value as needed */
+        }
+
+        .postcard__tagbox li {
+            font-weight: bold;
+        }
+
+        .brown-footer {
+            color: #6D5843;
+        }
+
+
+        .bookmark-card {
+            height: 350px;
+            width: 500px;
+            border-radius: 10px;
+            background-color: #fff;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .bookmark-border {
+            height: 220px;
+            width: 100%;
+            border: 2px solid black;
+            background-color: #05454e;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .bookmark-border i.fa-heart {
+                display: none;
+                /* Hide the heart icon */
+            }
+
+            .bookmark-border i.fa-bookmark {
+                font-size: 30px;
+                /* Increase the font size */
+                color: white;
+                transition: all 0.5s;
+                position: absolute;
+                /* Position the bookmark */
+                top: 10px;
+                /* Distance from the top */
+                right: 10px;
+                /* Distance from the right */
+                z-index: 1;
+            }
+
+        .bookmark-img {
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            transition: all 2s;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <img src="~/images/profilepicture.jpeg" alt="Profile Picture" class="profile-picture">
+        <div class="profile-name">Hajirah Sheikh</div>
+        <div class="profile-email">hajirah.sheikh@example.com</div>
+    </div>
+
+    <section class="wrapper recommendations">
+        <div class="col text-center mb-5">
+            <h1 class="display-4 font-weight-bolder">Tailored Reads: Your Picks!</h1>
+            <p class="lead">Introducing the newest stars in your constellation of want-to-reads: the books you've added to your literary wishlist! </p>
+        </div>
+        <div class="container-fluid">
+            <div class="row flex-nowrap overflow-auto">
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <div class="card text-dark card-has-bg">
+                        <!-- Card 1 content -->
+                        <img src="~/images/mice.jpeg" class="card-img-top" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column">
+                            <div class="card-body">
+                                <!-- Card body content -->
+                                <h5 class="card-title">Of Mice And Men</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <div class="card text-dark">
+                        <!-- Card 2 content -->
+                        <img src="~/images/morrie.jpeg" class="card-img-top" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column">
+                            <div class="card-body">
+                                <!-- Card body content -->
+                                <h5 class="card-title">Tuesdays With Morrie</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <div class="card text-dark card-has-bg">
+                        <!-- Card 3 content -->
+                        <img src="~/images/pride.jpeg" class="card-img-top" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column">
+                            <div class="card-body">
+                                <!-- Card body content -->
+                                <h5 class="card-title">Pride And Predujice</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
+                    <div class="card text-dark ">
+                        <!-- Card 4 content -->
+                        <img src="~/images/woman.jpeg" class="card-img-top" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column">
+                            <div class="card-body">
+                                <!-- Card body content -->
+                                <h5 class="card-title">A Woman Is No Man</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="dark">
+        <div class="container py-4">
+            <h1 class="h1 text-center" id="pageHeaderTitle">Currently Reading</h1>
+
+            <article class="postcard dark blue">
+                <div class="postcard__text">
+                    <h1 class="postcard__title blue"><a href="#">Nothing but the Rain</a></h1>
+                    <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                            <i class="fas fa-calendar-alt mr-2"></i>Mon, January 25th 2024
+                        </time>
+                    </div>
+                    <div class="postcard__bar"></div>
+                    <div class="postcard__preview-txt">
+                        It follows a woman struggling with PTSD as she seeks healing and
+                        connection in civilian life, ultimately finding solace through forgiveness and acceptance.
+                    </div>
+                    <ul class="postcard__tagbox">
+                        <li class="tag__item"><i class="fas fa-tag mr-2"></i>Reading</li>
+                        <li class="tag__item"><i class="fas fa-clock mr-2"></i>300 pages</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Container for the bookmark and Mailchimp card -->
+    <div class="container mt-5 mb-3">
+        <div class="row">
+            <!-- Bookmark Card -->
+            <div class="col-md-6">
+                <div class="bookmark-card p-3 mb-2">
+                    <div class="bookmark-border">
+                        <img class="bookmark-img" src="~/images/trial.jpeg" alt="Product Image">
+                        <i class="fa fa-bookmark bookmark-icon"></i> <!-- This is the bookmark symbol -->
+                    </div>
+                    <div class="bookmark-text">
+                        <h4 style="text-align: center;">Pinned</h4>
+                        <p style="font-size: large; text-align: center;">The Trail By Franz Kafka</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mailchimp Card -->
+            <div class="col-md-6">
+                <div class="card p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                            <div class="ms-2 c-details">
+                                <h6 class="mb-0">Congratulations!</h6> <span>4 days ago</span>
+                            </div>
+                        </div>
+                        <div class="badge"></div>
+                    </div>
+                    <div class="mt-5 mx-auto" style="width: 80%;">
+                        <h3 class="heading">Previously Read</h3><br>
+                        <h5 style="text-align: center;">Notes from Underground</h5>
+                        <h6 style="text-align: center;">Fyodor Dostoevsky</h6>
+                        <div class="mt-5">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="50"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="mt-3">
+                                <span class="text1">
+                                    467 <span class="text2">
+                                        of 470 pages
+                                        capacity
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-start text-center">
+                    <span class="text-dark fw-bold me-3 home-link" style="font-size: 18px;margin-right: 100px;">
+                        <a asp-area="" asp-controller="Authentication" asp-action="Home" class="text-decoration-none" style="font-size: 18px;">Home</a>
+                    </span>
+                    <span class="text-dark fw-bold me-3 contact-link" style="font-size: 18px; margin-left: 50px;margin-right: 100px;">
+                        <a asp-area="" asp-controller="Library" asp-action="Lib" class="text-decoration-none" style="font-size: 18px;">Library</a>
+                    </span>
+                    <span class="text-dark fw-bold me-3 contact-link" style="font-size: 18px; margin-left: 50px;">
+                        <a asp-area="" asp-controller="Authentication" asp-action="Settings" class="text-decoration-none" style="font-size: 18px;">Settings</a>
+                    </span>
+                </div>
+                <div class="col-md-6 text-md-end text-center">
+                    <span class="text-muted">© 2023 Digital Bookshelf. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
